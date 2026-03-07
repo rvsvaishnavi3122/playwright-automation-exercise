@@ -13,6 +13,8 @@ export class ProductPage extends BasePage {
   readonly productTitles: Locator;
   readonly continueShoppingButton: Locator;
   readonly viewCartLink: Locator;
+  readonly quantityInput = this.page.locator('#quantity');
+  readonly addToCartDetailButton = this.page.locator('button.cart');
 
   constructor(page: Page) {
     super(page);
@@ -74,4 +76,12 @@ async addProduct(index: number) {
   await product.hover();
   await product.locator('a.add-to-cart').first().click();
 }
+async setQuantity(quantity: number) {
+  await this.quantityInput.fill(quantity.toString());
+}
+
+async addProductFromDetail() {
+  await this.addToCartDetailButton.click();
+}
+
   }
