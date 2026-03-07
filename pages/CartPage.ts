@@ -4,6 +4,10 @@ export class CartPage extends BasePage{
     readonly cartItems:Locator;
     readonly removeButton:Locator;
     readonly productQuantity: Locator;
+    readonly deleteButton = this.page.locator('.cart_quantity_delete');
+    readonly emptyCart = this.page.getByText('Cart is empty');
+
+
     constructor(page:Page){
         super(page);
         this.cartItems=page.locator('.cart_description');
@@ -11,6 +15,7 @@ export class CartPage extends BasePage{
         this.productQuantity = page.locator('.cart_quantity button');
     }
     async removeProduct(){
-        await this.removeButton.first().click();
+        await this.deleteButton.first().click();
     }
+    
 }

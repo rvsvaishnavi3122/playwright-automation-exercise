@@ -47,8 +47,9 @@ export class ProductPage extends BasePage {
 }
 
   async openFirstProduct() {
-    await this.viewProductButton.click();
-  }
+  //await this.viewProductButton.waitFor({ state: 'visible' });
+  await this.viewProductButton.click();
+}
 
   async searchProduct(product: string) {
     await this.searchInput.fill(product);
@@ -60,8 +61,10 @@ export class ProductPage extends BasePage {
   }
 
   async viewCart() {
-    await this.viewCartLink.click();
-  }
+  await this.page.waitForLoadState('domcontentloaded');
+  await this.viewCartLink.waitFor({ state: 'visible' });
+  await this.viewCartLink.click();
+}
 
 async addProduct(index: number) {
 
