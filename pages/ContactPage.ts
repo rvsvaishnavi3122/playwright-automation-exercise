@@ -18,19 +18,25 @@ export class ContactPage extends BasePage{
         this.submitButton=page.locator('[data-qa="submit-button"]');
         this.successMessage = page.locator('#contact-page .alert-success');
     }
-    async submitForm(name:string,email:string){
-        await this.nameInput.fill(name);
-        await this.emailInput.fill(email);
-        await this.subjectInput.fill('Automation test');
-        await this.messageInput.fill('Testing contact form');
-        await this.fileUpload.setInputFiles({
-            name:'test.txt',
-            mimeType:'text/plain',
-            buffer: Buffer.from('Playwright Test file')
+    async submitForm(name: string, email: string) {
 
-        });
-        //handle alert
-        this.page.once('dialog',dialog=>dialog.accept());
-        await this.submitButton.click();
-    }
+  await this.nameInput.fill(name);
+  await this.emailInput.fill(email);
+  await this.subjectInput.fill('Automation test');
+  await this.messageInput.fill('Testing contact form');
+
+  await this.fileUpload.setInputFiles({
+    name: 'test.txt',
+    mimeType: 'text/plain',
+    buffer: Buffer.from('Playwright Test file')
+  });
+
+  // handle alert
+  this.page.once('dialog', dialog => dialog.accept());
+
+  await this.submitButton.click();
+
+  await this.successMessage.waitFor({ state: 'visible' });
+
+}
 }
