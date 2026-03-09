@@ -4,6 +4,7 @@ import{LoginPage} from '../../pages/LoginPage';
 import{ProductPage} from '../../pages/ProductPage';
 import{CartPage} from '../../pages/CartPage';
 import{CheckoutPage} from '../../pages/CheckoutPage';
+
 type Fixtures={
     homePage:HomePage;
     loginPage:LoginPage;
@@ -26,6 +27,7 @@ export const test = base.extend<Fixtures>({
     },
     checkoutPage:async({page},use)=>{
         await use(new CheckoutPage(page));
-    }
+    },
+    
 });
 export {expect} from '@playwright/test';
