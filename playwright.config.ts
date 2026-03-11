@@ -7,16 +7,19 @@ export default defineConfig({
   forbidOnly: !!process.env.CI,
   retries: process.env.CI ? 2 : 0,
   workers: process.env.CI ? 1 : undefined,
-  reporter: 'html',
+
+  reporter: [
+    ['html'],
+    ['allure-playwright']
+  ],
 
   use: {
     baseURL: 'https://automationexercise.com',
-    headless: false,
+    headless: true,
     screenshot: 'only-on-failure',
     video: 'retain-on-failure',
     trace: 'on-first-retry',
   },
-  
 
   projects: [
     {
@@ -24,9 +27,4 @@ export default defineConfig({
       use: { ...devices['Desktop Chrome'] },
     },
   ],
-  
 });
-reporter:[
-    ['html'],
-    ['allure-playwright'],
-  ]
