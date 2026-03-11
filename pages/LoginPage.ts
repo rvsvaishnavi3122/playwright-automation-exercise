@@ -53,9 +53,10 @@ export class LoginPage extends BasePage {
   }
 
   async goToLogin() {
-    await this.navigate('/');
-    await this.page.getByRole('link', { name: 'Signup / Login' }).click();
-  }
+  await this.navigate('/');
+  await this.page.getByRole('link', { name: 'Signup / Login' }).waitFor();
+  await this.page.getByRole('link', { name: 'Signup / Login' }).click();
+}
 
   async register(name: string, email: string) {
     await this.signupName.fill(name);
@@ -66,6 +67,8 @@ export class LoginPage extends BasePage {
   async login(email: string, password: string) {
   await this.loginEmail.fill(email);
   await this.loginPassword.fill(password);
+  await this.loginButton.click();
+
 
   await Promise.all([
     this.page.waitForLoadState('domcontentloaded'),
