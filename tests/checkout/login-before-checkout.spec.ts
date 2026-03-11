@@ -3,7 +3,7 @@ import { HomePage } from '../../pages/HomePage';
 import { ProductPage } from '../../pages/ProductPage';
 import { LoginPage } from '../../pages/LoginPage';
 import { CheckoutPage } from '../../pages/CheckoutPage';
-import { faker } from '@faker-js/faker';
+import { chromium} from '@playwright/test';
 
 test('Test Case 16: Login before Checkout', async ({ page }) => {
 

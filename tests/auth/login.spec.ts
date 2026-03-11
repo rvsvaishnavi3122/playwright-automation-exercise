@@ -1,7 +1,14 @@
-import { test, expect } from '@playwright/test';
+import { test, expect,chromium } from '@playwright/test';
 import { LoginPage } from '../../pages/LoginPage';
 import { testuser, invalidUser } from '../../fixtures/test-data';
+//import { chromium, test } from '@playwright/test';
 
+test('launch browser manually', async () => {
+  const browser = await chromium.launch({ headless: true });
+  const page = await browser.newPage();
+  await page.goto('https://automationexercise.com');
+  await browser.close();
+});
 test('Test case 2: Login user with correct email and password', async ({ page }) => {
   const loginPage = new LoginPage(page);
 
