@@ -8,9 +8,7 @@ test('Test case 2: Login user with correct email and password', async ({ page })
   await loginPage.goToLogin();
   await loginPage.login(testuser.email, testuser.password);
 
-  await expect(
-    page.getByText('Logged in as')
-  ).toBeVisible();
+  await expect(page.getByText('Logged in as')).toBeVisible();
 });
 
 test('Test case 3: Login user with incorrect creds', async ({ page }) => {
@@ -34,9 +32,7 @@ test('Test case 4: Logout user', async ({ page }) => {
 
   await loginPage.logout();
 
-  await expect(
-    page.getByText('Login to your account')
-  ).toBeVisible();
+  await expect(page.getByText('Login to your account')).toBeVisible();
 });
 
 test('Test case 5:Register with existing email', async ({ page }) => {
